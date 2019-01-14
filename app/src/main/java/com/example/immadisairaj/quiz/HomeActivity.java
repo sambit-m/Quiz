@@ -33,6 +33,7 @@ public class HomeActivity extends AppCompatActivity  {
     Question q;
     String difficulty;
     String category;
+    int responseCode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,12 +108,16 @@ public class HomeActivity extends AppCompatActivity  {
                         }
                         Log.v("answers", q.Answer.toString());
                     }
+                    progressBar.setVisibility(View.INVISIBLE);
+                    start.setClickable(true);
+                    Intent intent=new Intent(HomeActivity.this,QuizActivity.class);
+                    intent.putExtra("question",q);
+                    startActivity(intent);
+                    finish();
+                }else {
+                    progressBar.setVisibility(View.INVISIBLE);
+                    Toast.makeText(HomeActivity.this, "Questions will be added soon.", Toast.LENGTH_LONG).show();
                 }
-                progressBar.setVisibility(View.INVISIBLE);
-                start.setClickable(true);
-                Intent intent=new Intent(HomeActivity.this,QuizActivity.class);
-                intent.putExtra("question",q);
-                startActivity(intent);
 
             }
 
